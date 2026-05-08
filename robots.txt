@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://boxthebox.in/sitemap.xml
+Sitemap: https://boxthebox.com/sitemap.xml
