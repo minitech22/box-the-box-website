@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="description" content="Box The Box runs a fulfilment centre for D2C and marketplace sellers — we hold your stock, pack your orders the way your brand wants, and ship them out before the day ends." />
+<meta name="theme-color" content="#0F1B2D" />
+<meta property="og:title" content="Box The Box — We pack and ship your orders so you can do everything else." />
+<meta property="og:description" content="A fulfilment partner that actually picks up the phone. Storage, packing, dispatch, returns — for D2C and marketplace brands." />
+<meta property="og:type" content="website" />
+<title>Box The Box — Fulfilment for D2C Brands</title>
+
+<!-- Favicon (inline SVG: a small box monogram) -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Crect width='48' height='48' fill='%230F1B2D'/%3E%3Cg stroke='%23E9C893' stroke-width='2.5' fill='none' stroke-linejoin='round'%3E%3Crect x='6' y='14' width='28' height='28' rx='1.5'/%3E%3Cpath d='M6 14 L20 6 L34 14'/%3E%3Cpath d='M34 14 L42 18 L42 38 L34 42'/%3E%3Cline x1='6' y1='28' x2='34' y2='28'/%3E%3C/g%3E%3Ccircle cx='38' cy='28' r='2' fill='%23E9C893'/%3E%3C/svg%3E" />
+
+<!-- Fonts: Fraunces (display serif), Space Mono (accent), Inter Tight (body) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800;9..144,900&family=Space+Mono:wght@400;700&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   BOX THE BOX — Design System
+   Aesthetic: Editorial industrial. Kraft + ink + brass.
+   ============================================================ */
+
+:root{
+  --ink:        #0F1B2D;        /* deep navy ink */
+  --ink-soft:   #1B2A41;
+  --kraft:      #C9A36B;        /* kraft cardboard */
+  --kraft-deep: #8E6A3B;
+  --brass:      #E9C893;        /* highlight brass */
+  --paper:      #F4EDE0;        /* off-white paper */
+  --paper-soft: #EDE3D2;
+  --rule:       #2A3A55;
+  --green:      #4F7A3F;        /* eco green accent */
+  --red:        #B23A2C;        /* rubber-stamp red */
+
+  --serif:  'Fraunces', Georgia, serif;
+  --sans:   'Inter Tight', system-ui, sans-serif;
+  --mono:   'Space Mono', ui-monospace, monospace;
+
+  --maxw: 1320px;
+}
+
+*{box-sizing:border-box; margin:0; padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Subtle paper grain for the whole page */
+body::before{
+  content:""; position:fixed; inset:0; pointer-events:none; z-index:1;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity:.6; mix-blend-mode: multiply;
+}
+
+img{max-width:100%; display:block}
+a{color:inherit; text-decoration:none}
+button{font-family:inherit; cursor:pointer; border:none; background:none; color:inherit}
+
+/* ---------- Type ---------- */
+h1,h2,h3,h4{font-family: var(--serif); font-weight:600; letter-spacing:-0.02em; line-height:1.05}
+.eyebrow{
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--kraft-deep);
+}
+.eyebrow.light{color: var(--brass)}
+
+/* ---------- Reusable ---------- */
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px; position:relative; z-index:2}
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  padding: 14px 22px;
+  font-family: var(--mono); font-size: 12px; letter-spacing:.18em; text-transform:uppercase;
+  background: var(--ink); color: var(--paper);
+  border-radius: 2px;
+  transition: transform .25s ease, background .25s ease;
+}
+.btn:hover{transform: translateY(-2px); background: var(--ink-soft)}
+.btn.kraft{background: var(--kraft); color: var(--ink)}
+.btn.kraft:hover{background: var(--brass)}
+.btn .arrow{display:inline-block; transition: transform .25s}
+.btn:hover .arrow{transform: translateX(4px)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+nav{
+  position: sticky; top:0; z-index:50;
+  background: rgba(244,237,224,.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(15,27,45,.08);
+}
+.nav-inner{
+  display:flex; align-items:center; justify-content:space-between;
+  padding: 18px 32px;
+  max-width: var(--maxw); margin:0 auto;
+}
+.brand{display:flex; align-items:center; gap:12px}
+.brand-mark{
+  width:38px; height:38px; background: var(--ink); color: var(--brass);
+  display:grid; place-items:center; font-family: var(--serif); font-weight:800; font-size:22px;
+  border-radius:3px;
+}
+.logo-mark{
+  width: 40px; height: 40px;
+  color: var(--ink);
+  flex-shrink: 0;
+  transition: transform .4s ease;
+}
+.brand:hover .logo-mark{ transform: rotate(-6deg) }
+.brand-name{font-family: var(--serif); font-weight:700; font-size:20px; letter-spacing:-0.01em}
+.brand-name span{color: var(--kraft-deep); font-style: italic; font-weight:400}
+.nav-links{display:flex; gap:30px; list-style:none}
+.nav-links a{
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; position:relative; padding: 4px 0;
+}
+.nav-links a:after{
+  content:""; position:absolute; left:0; bottom:0; height:1px; width:0; background: var(--ink);
+  transition: width .3s ease;
+}
+.nav-links a:hover:after{width:100%}
+.nav-cta{padding: 10px 18px; font-size: 11px}
+@media (max-width: 860px){
+  .nav-links{display:none}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  position:relative; padding: 80px 0 100px;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items:center;
+}
+.hero-left h1{
+  font-size: clamp(48px, 7vw, 96px);
+  margin: 24px 0 28px;
+}
+.hero-left h1 em{
+  font-style: italic; color: var(--kraft-deep); font-weight:400;
+}
+.hero-left p.lede{
+  font-size: 19px; max-width: 540px; color: var(--ink-soft); margin-bottom: 36px;
+}
+.hero-cta{display:flex; gap:14px; flex-wrap:wrap}
+
+.hero-meta{
+  display:flex; gap: 40px; margin-top: 60px; padding-top: 30px;
+  border-top: 1px solid rgba(15,27,45,.15);
+}
+.hero-meta div{font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft)}
+.hero-meta strong{display:block; font-family: var(--serif); font-size: 28px; font-weight:600; color: var(--ink); letter-spacing:-0.02em; margin-bottom:4px; text-transform:none}
+
+/* Hero image stack */
+.hero-right{position:relative; height: 600px}
+.hero-img{
+  position:absolute; border-radius: 4px; overflow:hidden;
+  box-shadow: 0 30px 60px -20px rgba(15,27,45,.35);
+}
+.hero-img img{width:100%; height:100%; object-fit:cover}
+.hero-img-1{ width: 70%; height: 75%; top:0; right:0; z-index:2; }
+.hero-img-2{ width: 55%; height: 50%; bottom:0; left:0; z-index:3; border: 6px solid var(--paper);}
+.hero-stamp{
+  position:absolute; bottom: 30px; right: -10px; z-index:4;
+  width: 130px; height: 130px; border-radius:50%;
+  border: 2px solid var(--red); color: var(--red);
+  display:grid; place-items:center; text-align:center;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  background: rgba(244,237,224,.9);
+  transform: rotate(-12deg);
+  animation: stampin .6s cubic-bezier(.2,1.6,.4,1) .5s both;
+}
+.hero-stamp::before{
+  content:""; position:absolute; inset:8px; border:1px dashed var(--red); border-radius:50%;
+}
+.hero-stamp b{display:block; font-family: var(--serif); font-size: 18px; font-weight:700; letter-spacing:0; line-height:1; margin: 4px 0; text-transform: none}
+@keyframes stampin{
+  0%{opacity:0; transform: rotate(-12deg) scale(2.5)}
+  100%{opacity:1; transform: rotate(-12deg) scale(1)}
+}
+
+@media (max-width: 980px){
+  .hero-grid{grid-template-columns: 1fr; gap:40px}
+  .hero-right{height: 480px}
+}
+
+/* ============================================================
+   MARQUEE TRUST STRIP
+   ============================================================ */
+.marquee{
+  background: var(--ink); color: var(--paper);
+  padding: 22px 0; overflow:hidden;
+  border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule);
+}
+.marquee-track{
+  display:flex; gap: 60px; white-space:nowrap;
+  animation: scroll 35s linear infinite;
+  font-family: var(--mono); font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.marquee-track span{display:inline-flex; align-items:center; gap:60px}
+.marquee-track span::after{content:"✦"; color: var(--brass)}
+@keyframes scroll{from{transform:translateX(0)} to{transform: translateX(-50%)}}
+
+/* ============================================================
+   SECTION SHELL
+   ============================================================ */
+section{padding: 110px 0; position:relative}
+.section-head{
+  display:grid; grid-template-columns: 1fr 1.5fr; gap: 60px;
+  margin-bottom: 70px; align-items:end;
+}
+.section-head h2{font-size: clamp(36px, 5vw, 64px)}
+.section-head p{font-size: 17px; color: var(--ink-soft); max-width: 560px}
+@media(max-width: 860px){
+  .section-head{grid-template-columns: 1fr; gap: 24px}
+}
+
+/* ============================================================
+   SERVICES
+   ============================================================ */
+.services-grid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border-top: 1px solid rgba(15,27,45,.15);
+}
+.service{
+  padding: 40px 32px 50px;
+  border-bottom: 1px solid rgba(15,27,45,.15);
+  border-right: 1px solid rgba(15,27,45,.15);
+  position:relative; transition: background .3s ease;
+}
+.service:nth-child(3n){border-right:none}
+.service:hover{background: var(--paper-soft)}
+.service-num{
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em;
+  color: var(--kraft-deep);
+}
+.service h3{font-size: 28px; margin: 16px 0 14px}
+.service p{color: var(--ink-soft); font-size: 15px}
+.service-icon{
+  width: 52px; height: 52px; margin-bottom: 18px;
+  color: var(--ink);
+}
+@media(max-width: 860px){
+  .services-grid{grid-template-columns:1fr}
+  .service{border-right:none}
+}
+
+/* ============================================================
+   PACKAGING GALLERY
+   ============================================================ */
+.packaging{
+  background: var(--ink); color: var(--paper);
+  position:relative;
+}
+.packaging .eyebrow{color: var(--brass)}
+.packaging h2{color: var(--paper)}
+.packaging .section-head p{color: rgba(244,237,224,.7)}
+
+.gallery-grid{
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 180px;
+  gap: 16px;
+}
+.tile{
+  position:relative; overflow:hidden; border-radius:4px;
+  background: var(--ink-soft);
+}
+.tile img{width:100%; height:100%; object-fit:cover; transition: transform .8s ease}
+.tile:hover img{transform: scale(1.06)}
+.tile-label{
+  position:absolute; left:14px; bottom:14px; right:14px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; text-transform:uppercase;
+  color: var(--paper); background: rgba(15,27,45,.75); padding: 8px 12px;
+  border-left: 2px solid var(--brass);
+  backdrop-filter: blur(4px);
+}
+.tile-label b{display:block; font-family: var(--serif); font-size: 15px; letter-spacing:-0.01em; text-transform:none; margin-bottom:2px; color: var(--brass)}
+
+/* Tile sizing */
+.t1{grid-column: span 5; grid-row: span 2}
+.t2{grid-column: span 4; grid-row: span 1}
+.t3{grid-column: span 3; grid-row: span 1}
+.t4{grid-column: span 4; grid-row: span 1}
+.t5{grid-column: span 3; grid-row: span 1}
+.t6{grid-column: span 4; grid-row: span 2}
+.t7{grid-column: span 4; grid-row: span 1}
+.t8{grid-column: span 4; grid-row: span 1}
+
+@media(max-width: 980px){
+  .gallery-grid{grid-template-columns: repeat(6,1fr); grid-auto-rows: 140px}
+  .t1,.t6{grid-column: span 6; grid-row: span 2}
+  .t2,.t3,.t4,.t5,.t7,.t8{grid-column: span 3; grid-row: span 1}
+}
+
+/* Article-types row */
+.articles{
+  margin-top: 60px;
+  display:grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+}
+.article-card{
+  background: var(--ink-soft); border: 1px solid var(--rule);
+  padding: 28px 24px; border-radius: 4px;
+  transition: border-color .3s, transform .3s;
+}
+.article-card:hover{border-color: var(--brass); transform: translateY(-4px)}
+.article-card .ico{width:36px; height:36px; color: var(--brass); margin-bottom: 16px}
+.article-card h4{font-size: 19px; margin-bottom: 8px; color: var(--paper)}
+.article-card p{font-size: 13px; color: rgba(244,237,224,.65)}
+.article-card .pack-spec{
+  margin-top:14px; padding-top:14px; border-top: 1px solid var(--rule);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; color: var(--brass); text-transform:uppercase;
+}
+@media(max-width: 860px){.articles{grid-template-columns: repeat(2,1fr)}}
+
+/* ============================================================
+   LIFECYCLE INFOGRAPHIC
+   ============================================================ */
+.lifecycle{background: var(--paper-soft)}
+.flow{
+  position: relative;
+  display:grid; grid-template-columns: repeat(7, 1fr);
+  gap: 14px; margin-top: 30px;
+}
+.flow-step{
+  position:relative; padding: 28px 18px 24px;
+  background: var(--paper); border: 1px solid rgba(15,27,45,.12);
+  border-radius: 4px;
+  transition: transform .3s, box-shadow .3s;
+}
+.flow-step:hover{
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px -15px rgba(15,27,45,.2);
+  border-color: var(--kraft);
+}
+.flow-step .num{
+  position:absolute; top: -16px; left: 18px;
+  width: 32px; height: 32px; border-radius:50%;
+  background: var(--ink); color: var(--brass);
+  display:grid; place-items:center;
+  font-family: var(--serif); font-weight:700; font-size: 15px;
+}
+.flow-step .icon{width: 44px; height: 44px; color: var(--ink); margin: 8px 0 14px}
+.flow-step h4{font-size: 17px; margin-bottom:6px; line-height: 1.15}
+.flow-step p{font-size: 12px; color: var(--ink-soft); line-height: 1.45}
+.flow-step .tag{
+  display:inline-block; margin-top: 12px;
+  font-family: var(--mono); font-size: 9px; letter-spacing: 0.12em;
+  color: var(--kraft-deep); text-transform: uppercase;
+  border-top: 1px dashed var(--kraft); padding-top: 8px; width:100%;
+}
+.flow-step:not(:last-child)::after{
+  content:"→"; position:absolute; right: -16px; top: 50%; transform: translateY(-50%);
+  font-family: var(--serif); font-size: 22px; color: var(--kraft-deep); z-index:2;
+}
+@media(max-width: 1100px){
+  .flow{grid-template-columns: repeat(4,1fr)}
+  .flow-step:nth-child(4n)::after, .flow-step:last-child::after{display:none}
+}
+@media(max-width: 600px){
+  .flow{grid-template-columns: repeat(2,1fr)}
+  .flow-step:nth-child(2n)::after, .flow-step:last-child::after{display:none}
+}
+
+/* The "stamped" diagram — a custom SVG style block */
+.process-diagram{
+  margin-top: 80px; padding: 40px;
+  background: var(--paper);
+  border: 1px solid rgba(15,27,45,.12);
+  border-radius: 4px;
+  position:relative;
+}
+.process-diagram::before{
+  content:"BLUEPRINT / OPS-001"; position:absolute; top: 14px; right: 20px;
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em; color: var(--kraft-deep);
+}
+
+/* ============================================================
+   WAREHOUSE SHOWCASE
+   ============================================================ */
+.warehouse-grid{
+  display:grid; grid-template-columns: 1.4fr 1fr; gap: 30px;
+}
+.warehouse-main{position:relative; height: 580px; border-radius: 4px; overflow:hidden}
+.warehouse-main img{width:100%; height:100%; object-fit:cover}
+.warehouse-main .caption{
+  position:absolute; left: 30px; bottom: 30px; right: 30px;
+  background: rgba(15,27,45,.85); color: var(--paper); padding: 22px 26px;
+  border-left: 3px solid var(--brass);
+  backdrop-filter: blur(6px);
+  max-width: 460px;
+}
+.warehouse-main .caption .eyebrow{color: var(--brass)}
+.warehouse-main .caption h3{font-size: 24px; margin: 8px 0 6px; color: var(--paper)}
+.warehouse-main .caption p{font-size: 14px; color: rgba(244,237,224,.8)}
+.warehouse-side{display:grid; grid-template-rows: 1fr 1fr; gap: 30px}
+.warehouse-side > div{position:relative; border-radius:4px; overflow:hidden}
+.warehouse-side img{width:100%; height:100%; object-fit:cover}
+.warehouse-side .lbl{
+  position:absolute; left:0; bottom:0; right:0;
+  padding: 14px 18px;
+  background: linear-gradient(to top, rgba(15,27,45,.9), transparent);
+  color: var(--paper);
+  font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.warehouse-side .lbl b{display:block; font-family: var(--serif); font-size: 18px; letter-spacing:-0.01em; text-transform:none; margin-bottom:2px; color: var(--brass)}
+@media(max-width: 980px){
+  .warehouse-grid{grid-template-columns:1fr}
+  .warehouse-main{height: 400px}
+  .warehouse-side{grid-template-columns: 1fr 1fr; grid-template-rows: 240px}
+}
+
+/* ============================================================
+   STATS / TICKER
+   ============================================================ */
+.stats{
+  background: var(--ink); color: var(--paper);
+  padding: 80px 0;
+}
+.stats-grid{
+  display:grid; grid-template-columns: repeat(4,1fr); gap: 0;
+}
+.stat{
+  padding: 30px 24px;
+  border-right: 1px solid var(--rule);
+}
+.stat:last-child{border-right:none}
+.stat .num{
+  font-family: var(--serif); font-size: clamp(48px, 6vw, 78px); font-weight:600;
+  color: var(--brass); letter-spacing:-0.03em; line-height: 1;
+}
+.stat .num em{font-family: var(--serif); font-style: italic; font-weight:400; font-size: 70%}
+.stat .lbl{
+  margin-top: 14px; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,237,224,.7);
+}
+@media(max-width: 800px){
+  .stats-grid{grid-template-columns: 1fr 1fr}
+  .stat{border-right:none; border-bottom: 1px solid var(--rule); padding: 24px 16px}
+}
+
+/* ============================================================
+   CHANNELS
+   ============================================================ */
+.channels{padding: 90px 0}
+.channel-strip{
+  display:grid; grid-template-columns: repeat(6, 1fr); gap: 0;
+  margin-top: 50px;
+  border-top: 1px solid rgba(15,27,45,.15);
+  border-bottom: 1px solid rgba(15,27,45,.15);
+}
+.channel{
+  padding: 38px 16px; text-align:center;
+  border-right: 1px solid rgba(15,27,45,.1);
+  font-family: var(--serif); font-size: 22px; font-weight:600; letter-spacing:-0.01em;
+  color: var(--ink-soft); transition: background .3s, color .3s;
+}
+.channel:last-child{border-right:none}
+.channel:hover{background: var(--ink); color: var(--brass)}
+.channel small{display:block; font-family: var(--mono); font-size: 9px; letter-spacing: 0.18em; color: var(--kraft-deep); margin-top: 4px; text-transform:uppercase}
+.channel:hover small{color: var(--brass); opacity:.8}
+@media(max-width: 800px){.channel-strip{grid-template-columns: repeat(2,1fr)} .channel{border-right: 1px solid rgba(15,27,45,.1); border-bottom: 1px solid rgba(15,27,45,.1)}}
+
+/* ============================================================
+   TESTIMONIAL
+   ============================================================ */
+.quote-section{
+  padding: 120px 0;
+  background: var(--paper-soft);
+  border-top: 1px solid rgba(15,27,45,.08);
+  border-bottom: 1px solid rgba(15,27,45,.08);
+}
+.quote-block{
+  max-width: 880px; margin: 0 auto; text-align:center; position:relative;
+}
+.quote-block::before{
+  content:"❝"; font-family: var(--serif); font-size: 140px; line-height: 1;
+  color: var(--kraft); position:absolute; top: -50px; left: 50%; transform: translateX(-50%);
+  opacity: .4;
+}
+.quote-block blockquote{
+  font-family: var(--serif); font-size: clamp(24px, 3vw, 36px); font-weight:400;
+  line-height: 1.3; letter-spacing:-0.01em;
+  font-style: italic; color: var(--ink);
+  margin-bottom: 32px;
+}
+.quote-block cite{
+  font-style: normal; font-family: var(--mono); font-size: 11px;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-soft);
+}
+.quote-block cite b{color: var(--ink); font-weight:700; display:block; font-family: var(--serif); font-style:italic; font-size: 18px; margin-bottom:4px; letter-spacing:-0.01em; text-transform:none}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact{
+  background: var(--ink); color: var(--paper);
+  padding: 120px 0;
+  position:relative; overflow:hidden;
+}
+.contact .eyebrow{color: var(--brass)}
+.contact h2{color: var(--paper); font-size: clamp(40px, 6vw, 72px); margin-bottom: 20px}
+.contact-grid{display:grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items:start}
+.contact-info p{color: rgba(244,237,224,.75); font-size: 17px; max-width: 460px; margin-bottom: 40px}
+.contact-block{
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+}
+.contact-block:last-of-type{border-bottom: 1px solid var(--rule)}
+.contact-block .label{font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform:uppercase; color: var(--brass); margin-bottom:8px}
+.contact-block .val{font-family: var(--serif); font-size: 22px; color: var(--paper)}
+.contact-block .val a:hover{color: var(--brass)}
+
+.form{display:grid; gap: 18px}
+.form .row{display:grid; grid-template-columns: 1fr 1fr; gap: 16px}
+.form input, .form textarea, .form select{
+  background: transparent;
+  border: none; border-bottom: 1px solid var(--rule);
+  color: var(--paper);
+  padding: 14px 0;
+  font-family: var(--sans); font-size: 15px;
+  outline:none; transition: border-color .25s;
+}
+.form input::placeholder, .form textarea::placeholder{color: rgba(244,237,224,.4)}
+.form input:focus, .form textarea:focus, .form select:focus{border-bottom-color: var(--brass)}
+.form select{appearance:none; background-image: linear-gradient(45deg, transparent 50%, var(--brass) 50%), linear-gradient(135deg, var(--brass) 50%, transparent 50%); background-position: calc(100% - 16px) 50%, calc(100% - 11px) 50%; background-size: 5px 5px; background-repeat: no-repeat; padding-right: 30px}
+.form select option{background: var(--ink); color: var(--paper)}
+.form textarea{resize:vertical; min-height: 100px}
+.form button{margin-top: 8px; align-self:flex-start; background: var(--brass); color: var(--ink)}
+.form button:hover{background: var(--paper)}
+.form-note{font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; color: rgba(244,237,224,.4); text-transform:uppercase; margin-top: 12px}
+@media(max-width: 860px){
+  .contact-grid{grid-template-columns: 1fr; gap: 50px}
+  .form .row{grid-template-columns: 1fr}
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{
+  background: #07111E; color: rgba(244,237,224,.7);
+  padding: 60px 0 30px;
+}
+.foot-grid{
+  display:grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+  padding-bottom: 40px; border-bottom: 1px solid var(--rule);
+}
+.foot-grid h5{font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform:uppercase; color: var(--brass); margin-bottom: 16px}
+.foot-grid ul{list-style:none}
+.foot-grid li{margin-bottom: 10px; font-size: 14px}
+.foot-grid li a:hover{color: var(--brass)}
+.foot-about p{font-size: 14px; max-width: 380px; margin-top: 16px}
+.foot-bottom{
+  display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap: 16px;
+  padding-top: 24px; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: rgba(244,237,224,.4); text-transform:uppercase;
+}
+@media(max-width: 800px){.foot-grid{grid-template-columns: 1fr 1fr} .foot-about{grid-column: span 2}}
+
+/* Reveal on scroll */
+.reveal{opacity:0; transform: translateY(30px); transition: opacity .8s, transform .8s}
+.reveal.in{opacity:1; transform: translateY(0)}
+
+/* Pin/sticker decoration */
+.kraft-tape{
+  position:absolute; width: 120px; height: 28px;
+  background: var(--kraft); opacity: .85;
+  transform: rotate(-3deg);
+  background-image: repeating-linear-gradient(135deg, transparent 0 8px, rgba(0,0,0,.05) 8px 16px);
+}
+
+/* ============================================================
+   MOBILE OPTIMIZATION — comprehensive responsive overhaul
+   ============================================================ */
+
+/* Hamburger button — hidden by default, shown on mobile */
+.nav-toggle{
+  display: none;
+  width: 40px; height: 40px;
+  flex-direction: column; gap: 5px;
+  align-items: center; justify-content: center;
+  background: transparent;
+  border: 1px solid rgba(15,27,45,.2);
+  border-radius: 3px;
+  padding: 0;
+  cursor: pointer;
+}
+.nav-toggle span{
+  display: block;
+  width: 18px; height: 2px;
+  background: var(--ink);
+  transition: transform .3s, opacity .3s;
+}
+.nav-toggle.open span:nth-child(1){ transform: translateY(7px) rotate(45deg) }
+.nav-toggle.open span:nth-child(2){ opacity: 0 }
+.nav-toggle.open span:nth-child(3){ transform: translateY(-7px) rotate(-45deg) }
+
+/* ============ TABLET (≤ 980px) ============ */
+@media (max-width: 980px){
+  .wrap{ padding: 0 24px }
+  section{ padding: 80px 0 }
+  
+  /* Hero */
+  .hero{ padding: 50px 0 70px }
+  .hero-grid{ grid-template-columns: 1fr; gap: 40px }
+  .hero-left h1{ font-size: clamp(40px, 8vw, 68px) }
+  .hero-left p.lede{ font-size: 17px }
+  .hero-right{ height: 420px; max-width: 600px; margin: 0 auto; width: 100% }
+  
+  /* Section heads */
+  .section-head{ grid-template-columns: 1fr; gap: 20px; margin-bottom: 50px }
+  .section-head h2{ font-size: clamp(32px, 5vw, 50px) }
+  
+  /* Services — 2 cols on tablet */
+  .services-grid{ grid-template-columns: repeat(2, 1fr) }
+  .service{ border-right: 1px solid rgba(15,27,45,.15) }
+  .service:nth-child(2n){ border-right: none }
+  
+  /* Articles to 2 cols */
+  .articles{ grid-template-columns: repeat(2,1fr) }
+  
+  /* Lifecycle to 4 cols */
+  .flow{ grid-template-columns: repeat(4,1fr) }
+  .flow-step:nth-child(4n)::after, .flow-step:last-child::after{ display: none }
+  
+  /* Process diagram — make it scrollable */
+  .process-diagram{ overflow-x: auto; padding: 24px }
+  .process-diagram svg{ min-width: 900px }
+  
+  /* Warehouse */
+  .warehouse-grid{ grid-template-columns: 1fr }
+  .warehouse-main{ height: 400px }
+  .warehouse-side{ grid-template-columns: 1fr 1fr; grid-template-rows: 240px }
+  
+  /* Stats — 2x2 */
+  .stats-grid{ grid-template-columns: 1fr 1fr }
+  .stat{ border-right: none; border-bottom: 1px solid var(--rule) }
+  .stat:nth-child(odd){ border-right: 1px solid var(--rule) }
+  .stat:nth-child(n+3){ border-bottom: none }
+  
+  /* Channels */
+  .channel-strip{ grid-template-columns: repeat(3, 1fr) }
+  
+  /* Contact */
+  .contact-grid{ grid-template-columns: 1fr; gap: 50px }
+}
+
+/* ============ MOBILE (≤ 720px) ============ */
+@media (max-width: 720px){
+  .wrap{ padding: 0 18px }
+  section{ padding: 60px 0 }
+  
+  /* Sticky nav becomes mobile menu */
+  .nav-inner{ padding: 14px 18px }
+  .brand-name{ font-size: 17px }
+  .logo-mark{ width: 32px; height: 32px }
+  .nav-links{
+    display: none;
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: var(--paper);
+    flex-direction: column;
+    gap: 0;
+    padding: 16px 24px 24px;
+    border-top: 1px solid rgba(15,27,45,.1);
+    border-bottom: 1px solid rgba(15,27,45,.1);
+    box-shadow: 0 12px 24px -8px rgba(15,27,45,.15);
+  }
+  .nav-links.open{ display: flex }
+  .nav-links li{ width: 100% }
+  .nav-links a{
+    display: block;
+    padding: 14px 0;
+    font-size: 13px;
+    border-bottom: 1px solid rgba(15,27,45,.06);
+  }
+  .nav-links li:last-child a{ border-bottom: none }
+  .nav-cta{ display: none }
+  .nav-toggle{ display: flex }
+  
+  /* Hero — much tighter */
+  .hero{ padding: 30px 0 50px }
+  .hero-left h1{
+    font-size: clamp(36px, 9vw, 52px);
+    line-height: 1.05;
+  }
+  .hero-left h1 br{ display: none }
+  .hero-left p.lede{ font-size: 16px; line-height: 1.55 }
+  .hero-cta{ flex-direction: column; align-items: stretch; gap: 10px }
+  .hero-cta .btn{ justify-content: center; padding: 16px 22px }
+  
+  .hero-right{ height: 340px }
+  .hero-img-1{ width: 78%; height: 70% }
+  .hero-img-2{ width: 60%; height: 50% }
+  .hero-stamp{
+    width: 90px; height: 90px;
+    bottom: 10px; right: 0;
+    font-size: 7px;
+  }
+  .hero-stamp b{ font-size: 13px }
+  
+  .hero-meta{ flex-direction: column; gap: 16px; margin-top: 36px; padding-top: 24px }
+  .hero-meta div{ display: flex; align-items: baseline; gap: 12px; font-size: 10px }
+  .hero-meta strong{ font-size: 22px; margin-bottom: 0; min-width: 130px }
+  
+  /* Marquee — slow it down */
+  .marquee{ padding: 16px 0 }
+  .marquee-track{ font-size: 11px; gap: 36px }
+  .marquee-track span{ gap: 36px }
+  
+  /* Section heads */
+  .section-head{ margin-bottom: 36px }
+  .section-head h2{ font-size: clamp(28px, 7vw, 40px); line-height: 1.1 }
+  .section-head p{ font-size: 15px }
+  
+  /* Services — 1 col */
+  .services-grid{ grid-template-columns: 1fr }
+  .service{ border-right: none; padding: 32px 22px 36px }
+  .service h3{ font-size: 24px }
+  .service p{ font-size: 14px }
+  .service-icon{ width: 42px; height: 42px; margin-bottom: 14px }
+  
+  /* Packaging gallery — simpler 2-col layout */
+  .gallery-grid{
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 140px;
+    gap: 10px;
+  }
+  .t1{ grid-column: span 2; grid-row: span 2 }
+  .t2,.t3,.t4,.t5,.t7,.t8{ grid-column: span 1; grid-row: span 1 }
+  .t6{ grid-column: span 2; grid-row: span 2 }
+  .tile-label{
+    left: 8px; right: 8px; bottom: 8px;
+    font-size: 8px; padding: 6px 8px;
+  }
+  .tile-label b{ font-size: 12px; margin-bottom: 1px }
+  
+  /* Article cards — 1 col */
+  .articles{ grid-template-columns: 1fr; margin-top: 40px; gap: 14px }
+  .article-card{ padding: 22px 20px }
+  .article-card h4{ font-size: 17px }
+  
+  /* Lifecycle — 2 cols, no arrows between */
+  .flow{ grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 30px }
+  .flow-step{ padding: 24px 14px 20px }
+  .flow-step .num{ width: 26px; height: 26px; font-size: 13px; top: -13px; left: 14px }
+  .flow-step .icon{ width: 36px; height: 36px; margin: 4px 0 10px }
+  .flow-step h4{ font-size: 14px; line-height: 1.2 }
+  .flow-step p{ font-size: 11px; line-height: 1.4 }
+  .flow-step .tag{ font-size: 8px; padding-top: 6px; margin-top: 8px }
+  .flow-step::after{ display: none !important }
+  
+  .process-diagram{ padding: 16px; margin-top: 50px }
+  .process-diagram::before{ font-size: 8px; top: 8px; right: 12px }
+  
+  /* Stats — 2x2 with smaller numbers */
+  .stats{ padding: 50px 0 }
+  .stat{ padding: 22px 14px }
+  .stat .num{ font-size: clamp(36px, 9vw, 50px) }
+  .stat .lbl{ font-size: 10px; margin-top: 10px }
+  
+  /* Warehouse */
+  .warehouse-main{ height: 320px }
+  .warehouse-main .caption{
+    left: 14px; right: 14px; bottom: 14px;
+    padding: 14px 16px;
+    max-width: none;
+  }
+  .warehouse-main .caption h3{ font-size: 18px }
+  .warehouse-main .caption p{ font-size: 13px }
+  .warehouse-side{ grid-template-columns: 1fr; grid-template-rows: 200px 200px; gap: 14px }
+  
+  /* Channels — 2 col */
+  .channel-strip{ grid-template-columns: 1fr 1fr; margin-top: 30px }
+  .channel{ padding: 26px 12px; font-size: 17px }
+  .channel small{ font-size: 8px; margin-top: 3px }
+  
+  /* Testimonial */
+  .quote-section{ padding: 70px 0 }
+  .quote-block::before{ font-size: 90px; top: -30px }
+  .quote-block blockquote{ font-size: clamp(20px, 5vw, 26px); line-height: 1.35 }
+  .quote-block cite{ font-size: 10px }
+  
+  /* Contact */
+  .contact{ padding: 70px 0 }
+  .contact h2{ font-size: clamp(32px, 8vw, 48px) }
+  .contact-info p{ font-size: 16px; margin-bottom: 30px }
+  .contact-block{ padding: 18px 0 }
+  .contact-block .val{ font-size: 18px }
+  .form .row{ grid-template-columns: 1fr; gap: 0 }
+  .form input, .form textarea, .form select{ font-size: 16px; padding: 12px 0 } /* 16px prevents iOS zoom-in */
+  .form button{ width: 100%; justify-content: center; padding: 16px }
+  
+  /* Footer */
+  footer{ padding: 50px 0 24px }
+  .foot-grid{ grid-template-columns: 1fr 1fr; gap: 30px 20px }
+  .foot-about{ grid-column: span 2; padding-bottom: 16px; border-bottom: 1px solid var(--rule); margin-bottom: 8px }
+  .foot-about p{ font-size: 13px }
+  .foot-grid h5{ font-size: 10px; margin-bottom: 12px }
+  .foot-grid li{ font-size: 13px; margin-bottom: 8px }
+  .foot-bottom{ font-size: 9px; flex-direction: column; gap: 10px; text-align: center }
+}
+
+/* ============ SMALL PHONE (≤ 380px) ============ */
+@media (max-width: 380px){
+  .wrap{ padding: 0 14px }
+  .hero-left h1{ font-size: 34px }
+  .gallery-grid{ grid-auto-rows: 120px }
+  .tile-label b{ font-size: 11px }
+  .tile-label{ font-size: 7px }
+  .flow{ grid-template-columns: 1fr }
+  .stats-grid{ grid-template-columns: 1fr }
+  .stat{ border-right: none !important; border-bottom: 1px solid var(--rule) }
+  .stat:last-child{ border-bottom: none }
+  .channel-strip{ grid-template-columns: 1fr }
+  .channel{ border-right: none; border-bottom: 1px solid rgba(15,27,45,.1) }
+}
+
+/* ============ TOUCH-FRIENDLY POLISH ============ */
+@media (hover: none){
+  .tile:hover img{ transform: none }
+  .channel:hover{ background: transparent; color: var(--ink-soft) }
+  .channel:hover small{ color: var(--kraft-deep) }
+  .service:hover{ background: transparent }
+  .article-card:hover{ border-color: var(--rule); transform: none }
+  .flow-step:hover{ transform: none; box-shadow: none; border-color: rgba(15,27,45,.12) }
+}
+
+/* Reduce motion if user prefers it */
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration: .01s !important; transition-duration: .01s !important }
+  .marquee-track{ animation: none }
+}
+</style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  ✏️  EDIT YOUR DETAILS HERE — THIS IS THE ONLY PLACE YOU NEED TO CHANGE    ║ -->
+<!-- ║                                                                          ║ -->
+<!-- ║  Just change the text inside the quotes below. Don't change anything     ║ -->
+<!-- ║  else on this line, especially the colons, commas, and quote marks.      ║ -->
+<!-- ║                                                                          ║ -->
+<!-- ║  After saving, refresh the page in your browser to see the changes.      ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════════════════╝ -->
+<script>
+const SITE = {
+  // Your contact details
+  phone:        "+91 98172 79519",       // Your phone / WhatsApp
+  phoneLink:    "+919817279519",         // Same number, but no spaces (used for the click-to-call link)
+  email:        "hello@boxthebox.in",    // Where enquiries should land
+  
+  // Your full address (use <br> to break a line)
+  addressLine1: "Box The Box Fulfilment Centre",
+  addressLine2: "Bhiwandi, Thane — 421302",
+  addressLine3: "Maharashtra, India",
+  
+  // Working hours
+  hours: "Mon — Sat · 9:30 AM to 7:30 PM IST",
+  
+  // The four big numbers in the dark stats strip
+  // (also shown as smaller numbers in the hero)
+  stat1: "40,000",                       stat1Unit: " sq.ft", stat1Label: "Floor space",
+  stat2: "5,000",                        stat2Unit: "+",      stat2Label: "Orders we can ship per day",
+  stat3: "99.7",                         stat3Unit: "%",      stat3Label: "Pick accuracy, last 90 days",
+  stat4: "< 24",                         stat4Unit: " hrs",   stat4Label: "From your truck to the shelf",
+  
+  // The testimonial quote
+  quoteText:   "We were losing roughly 4% of orders to breakages before we moved. In the first month with Box The Box that dropped to almost nothing. Honestly the bigger thing has been getting weekends back.",
+  quoteAuthor: "Founder, D2C home goods brand",
+  quoteMeta:   "Mumbai · with us since 2024"
+};
+</script>
+<!-- ╔══════════════════════════════════════════════════════════════════════════╗ -->
+<!-- ║  END OF EDITABLE SECTION — don't touch anything below this line          ║ -->
+<!-- ╚══════════════════════════════════════════════════════════════════════════╝ -->
+
+
+<!-- ====================== NAV ====================== -->
+<nav>
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <svg class="logo-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="Box The Box logo">
+        <rect x="6" y="14" width="28" height="28" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+        <path d="M6 14 L20 6 L34 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M34 14 L42 18 L42 38 L34 42" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+        <line x1="6" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="2.5"/>
+        <circle cx="38" cy="28" r="2" fill="currentColor"/>
+      </svg>
+      <div class="brand-name">Box The Box</div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#packaging">Packaging</a></li>
+      <li><a href="#lifecycle">Process</a></li>
+      <li><a href="#warehouse">Warehouse</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn nav-cta">Book a Visit →</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ====================== HERO ====================== -->
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-left reveal">
+        <div class="eyebrow">Fulfilment for D2C &amp; Marketplace Brands</div>
+        <h1>You <em>build the brand.</em><br>We'll <em>ship the boxes.</em></h1>
+        <p class="lede">
+          Send us your inventory. We'll store it, pick it, pack it the way your brand needs, and hand it off to the courier — usually before the cut-off, often before lunch. No drama, no missed orders, no excuses about Monday.
+        </p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn">Talk to Us <span class="arrow">→</span></a>
+          <a href="#lifecycle" class="btn kraft">How It Works</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong data-edit="hero-stat1">40,000<em> sq.ft.</em></strong>Floor space</div>
+          <div><strong>15+</strong>Marketplaces &amp; couriers</div>
+          <div><strong data-edit="hero-stat3">99.7%</strong>Pick accuracy</div>
+        </div>
+      </div>
+      <div class="hero-right reveal">
+        <div class="hero-img hero-img-1">
+          <img src="images/hero-1.jpg" alt="Box The Box fulfilment centre — Sector A storage racks" loading="lazy">
+        </div>
+        <div class="hero-img hero-img-2">
+          <img src="images/hero-2.jpg" alt="Box The Box pack station with thank-you cards and branded materials" loading="lazy">
+        </div>
+        <div class="hero-stamp">
+          <div>
+            QC<br>
+            <b>PASSED</b>
+            PACKED · IN
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== MARQUEE ====================== -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span>Amazon Easy Ship</span><span>Flipkart Smart</span><span>Myntra PPMP</span>
+    <span>Shopify Direct</span><span>Meesho Supplier</span><span>Nykaa Fulfilled</span>
+    <span>Ajio Marketplace</span><span>JioMart</span><span>Tata Cliq</span>
+    <span>Amazon Easy Ship</span><span>Flipkart Smart</span><span>Myntra PPMP</span>
+    <span>Shopify Direct</span><span>Meesho Supplier</span><span>Nykaa Fulfilled</span>
+    <span>Ajio Marketplace</span><span>JioMart</span><span>Tata Cliq</span>
+  </div>
+</div>
+
+<!-- ====================== SERVICES ====================== -->
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">What we handle</div>
+        <h2>Six things, done properly. Not fifty, done badly.</h2>
+      </div>
+      <p>
+        Most fulfilment partners try to be everything to everyone. We don't. We do the operational basics really well — receiving stock, storing it, packing orders, getting them out the door, handling returns. The unglamorous middle of your supply chain. The part that, if it breaks, breaks your brand.
+      </p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service reveal">
+        <div class="service-num">SVC / 01</div>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 14l18-8 18 8v22l-18 8-18-8V14z"/><path d="M6 14l18 8 18-8M24 22v22"/>
+        </svg>
+        <h3>Inward &amp; Storage</h3>
+        <p>Your stock arrives, we count it, photograph any damage, and put it on a shelf with a coordinate. You see live stock numbers on a dashboard. FIFO for most, FEFO for anything with an expiry.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-num">SVC / 02</div>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="14" width="32" height="24" rx="1"/><path d="M14 14V8h20v6M14 24h20M14 30h12"/>
+        </svg>
+        <h3>Pick &amp; Pack</h3>
+        <p>Every order gets scanned twice — once at picking, once at packing. We use your inserts, your tape, your thank-you cards. If it's fragile, it gets bubble wrap and a "fragile" sticker. If it's a gift, it gets ribbon.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-num">SVC / 03</div>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 30V18h22v12M26 22h12l6 8v0H26zM12 38a4 4 0 100-8 4 4 0 000 8zM34 38a4 4 0 100-8 4 4 0 000 8z"/>
+        </svg>
+        <h3>Channel Dispatch</h3>
+        <p>Orders flow in from Amazon, Flipkart, Myntra, Shopify, Meesho, Nykaa — automatically. We print the courier's label, manifest the parcel, and hand it over. Cut-off is 4 PM for same-day pickup.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-num">SVC / 04</div>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 24h36M24 6v36M10 10l28 28M38 10L10 38"/><circle cx="24" cy="24" r="18"/>
+        </svg>
+        <h3>Returns &amp; RTO</h3>
+        <p>Returns are messy and most 3PLs hide it. We open every return on camera, check the SKU, decide if it's resaleable, and update your inventory the same day. Damaged stock gets photographed before scrap so you have a record.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-num">SVC / 05</div>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="6" width="32" height="36" rx="2"/><path d="M14 14h20M14 22h20M14 30h14"/>
+        </svg>
+        <h3>Labelling &amp; Compliance</h3>
+        <p>The annoying paperwork. MRP stickers, batch codes, FSSAI labels for food, weights and measures compliance, GST e-invoicing. We won't let your shipment get held up because someone forgot a sticker.</p>
+      </div>
+      <div class="service reveal">
+        <div class="service-num">SVC / 06</div>
+        <svg class="service-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 38V14a4 4 0 014-4h28a4 4 0 014 4v24"/><path d="M14 26l8 8 14-16"/>
+        </svg>
+        <h3>QC &amp; Reporting</h3>
+        <p>Three checkpoints: when stock comes in, when it gets packed, when it ships. You get a daily summary in your inbox by 9 AM the next morning, plus a live dashboard if you prefer to check yourself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== PACKAGING ====================== -->
+<section class="packaging" id="packaging">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow light">Packaging</div>
+        <h2>The reason most returns happen.</h2>
+      </div>
+      <p>
+        A surprising number of returns are not about the product — they're about how it arrived. A bottle that leaked. A t-shirt that got damp. A box that looked like it lost a fight with the courier. We spend more time than we should obsessing about this part, because it's the part your customer actually touches.
+      </p>
+    </div>
+
+    <!-- Image gallery -->
+    <div class="gallery-grid reveal">
+      <div class="tile t1">
+        <img src="images/pack-1.jpg" alt="Branded Box The Box parcels with custom labels and thank-you cards" loading="lazy">
+        <div class="tile-label"><b>Branded throughout</b>Your tape, your inserts, your boxes</div>
+      </div>
+      <div class="tile t2">
+        <img src="images/pack-2.jpg" alt="Multi-ply corrugated cartons on wooden pallet" loading="lazy">
+        <div class="tile-label"><b>Cartons</b>3-ply for light, 5-ply standard, 7-ply for heavy</div>
+      </div>
+      <div class="tile t3">
+        <img src="images/pack-3.jpg" alt="Bubble wrap rolls with fragile glass item being protected" loading="lazy">
+        <div class="tile-label"><b>Bubble & foam</b>Fragile-grade cushioning</div>
+      </div>
+      <div class="tile t4">
+        <img src="images/pack-4.jpg" alt="Box The Box branded kraft and poly mailers for apparel" loading="lazy">
+        <div class="tile-label"><b>Kraft & poly mailers</b>For apparel & soft-goods</div>
+      </div>
+      <div class="tile t5">
+        <img src="images/pack-5.jpg" alt="Box sealed with branded Box The Box tamper-evident kraft tape" loading="lazy">
+        <div class="tile-label"><b>Sealed twice</b>Tamper-evident, brand-printed tape</div>
+      </div>
+      <div class="tile t6">
+        <img src="images/pack-6.jpg" alt="Dispatch staging area with hundreds of Box The Box parcels organized in zones" loading="lazy">
+        <div class="tile-label"><b>Staging area</b>Sorted by courier and route</div>
+      </div>
+      <div class="tile t7">
+        <img src="images/pack-7.jpg" alt="Warehouse worker performing double-scan QC verification on a Box The Box parcel" loading="lazy">
+        <div class="tile-label"><b>Double-scan</b>SKU and AWB checked separately</div>
+      </div>
+      <div class="tile t8">
+        <img src="images/pack-8.jpg" alt="Worker in safety vest sealing a branded Box The Box parcel" loading="lazy">
+        <div class="tile-label"><b>Your brand on it</b>Printed boxes, thank-you cards, the works</div>
+      </div>
+    </div>
+
+    <!-- Article types -->
+    <div class="articles">
+      <div class="article-card reveal">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 6h20l4 10v26H10V16l4-10z"/><path d="M10 16h28M20 22v8"/>
+        </svg>
+        <h4>Apparel & Fashion</h4>
+        <p>Folded, polybagged, tag-checked. Hangable garments on rolling racks.</p>
+        <div class="pack-spec">Poly mailer · 60–80 GSM</div>
+      </div>
+      <div class="article-card reveal">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="10" y="6" width="28" height="36" rx="2"/><path d="M16 14h16M16 22h16M16 30h10"/>
+        </svg>
+        <h4>Beauty & Wellness</h4>
+        <p>Leak-proof seal, bubble-cradle for glass, MRP & batch verified.</p>
+        <div class="pack-spec">5-ply carton · with corner pads</div>
+      </div>
+      <div class="article-card reveal">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 18h36v22H6zM14 18V10h20v8"/><circle cx="24" cy="29" r="4"/>
+        </svg>
+        <h4>Electronics</h4>
+        <p>Anti-static wrap, foam cradle, double-walled outer. Serial number scanned and logged before the box is sealed.</p>
+        <div class="pack-spec">7-ply BF · serial scan</div>
+      </div>
+      <div class="article-card reveal">
+        <svg class="ico" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M14 38h20l-2-22H16zM18 16V12a6 6 0 0112 0v4"/>
+        </svg>
+        <h4>Home & Decor</h4>
+        <p>Custom-cut inserts, edge-protectors, fragile sticker on six sides.</p>
+        <div class="pack-spec">Triple-cushioned · drop-tested</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== LIFECYCLE INFOGRAPHIC ====================== -->
+<section class="lifecycle" id="lifecycle">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">The process</div>
+        <h2>Seven steps. Every parcel. Every time.</h2>
+      </div>
+      <p>
+        Here's exactly what happens between your truck pulling up at our gate and your customer getting their parcel. We don't skip steps when it's busy — that's when you skip them and things go wrong.
+      </p>
+    </div>
+
+    <!-- 7-step flow -->
+    <div class="flow">
+      <div class="flow-step reveal">
+        <div class="num">1</div>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 30V18l18-10 18 10v12L24 40z"/><path d="M6 18l18 10 18-10M24 28v12"/>
+        </svg>
+        <h4>Stock arrives</h4>
+        <p>We unload your truck, count what came in, and photograph anything that looks damaged. You get a GRN within 24 hours.</p>
+        <div class="tag">Stage 01 · GRN</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="num">2</div>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="10" width="36" height="28" rx="2"/><path d="M14 10v28M22 10v28M30 10v28"/>
+        </svg>
+        <h4>QC at inward</h4>
+        <p>Every SKU is checked against what you said was coming. Counts, condition, MRPs, batch numbers. Anything off, you hear about that day.</p>
+        <div class="tag">Stage 02 · QC</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="num">3</div>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="6" y="6" width="36" height="36" rx="2"/><path d="M6 18h36M6 30h36M18 6v36M30 6v36"/>
+        </svg>
+        <h4>Binning & Storage</h4>
+        <p>SKUs are mapped to bins. Fast-movers near pack lines, slow-movers in deep storage.</p>
+        <div class="tag">Stage 03 · WMS</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="num">4</div>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="24" cy="24" r="18"/><path d="M16 24l6 6 12-12"/>
+        </svg>
+        <h4>Order comes in</h4>
+        <p>Orders pull in automatically from Amazon, Flipkart, Shopify, whatever you sell on. The system builds a picklist by location.</p>
+        <div class="tag">Stage 04 · API</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="num">5</div>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M6 38V18l8-8h20l8 8v20z"/><circle cx="24" cy="26" r="5"/>
+        </svg>
+        <h4>Pick & Pack</h4>
+        <p>Wave-picked, double-scanned, packed in the right material with brand inserts.</p>
+        <div class="tag">Stage 05 · OPS</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="num">6</div>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <rect x="8" y="14" width="32" height="22" rx="1"/><path d="M14 22h20M14 28h12"/><path d="M14 14V8h20v6"/>
+        </svg>
+        <h4>Label & Manifest</h4>
+        <p>AWB printed, marketplace-compliant labels, weight verified, courier manifest closed.</p>
+        <div class="tag">Stage 06 · AWB</div>
+      </div>
+      <div class="flow-step reveal">
+        <div class="num">7</div>
+        <svg class="icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M4 30V18h22v12M26 22h12l6 8v0H26zM12 38a4 4 0 100-8 4 4 0 000 8zM34 38a4 4 0 100-8 4 4 0 000 8z"/>
+        </svg>
+        <h4>Out the door</h4>
+        <p>Courier signs for the bag, tracking ID syncs back to your channel, and your customer gets a notification.</p>
+        <div class="tag">Stage 07 · OUT</div>
+      </div>
+    </div>
+
+    <!-- Detailed blueprint diagram -->
+    <div class="process-diagram reveal">
+      <svg viewBox="0 0 1280 360" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:auto; display:block">
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#0F1B2D" stroke-width=".3" opacity=".15"/>
+          </pattern>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#8E6A3B"/>
+          </marker>
+        </defs>
+        <rect width="1280" height="360" fill="url(#grid)"/>
+
+        <!-- Brand input -->
+        <g>
+          <rect x="20" y="140" width="120" height="80" rx="3" fill="#0F1B2D"/>
+          <text x="80" y="175" text-anchor="middle" fill="#E9C893" font-family="Fraunces" font-size="16" font-weight="600">BRAND</text>
+          <text x="80" y="195" text-anchor="middle" fill="#C9A36B" font-family="Space Mono" font-size="9" letter-spacing="1">INVENTORY IN</text>
+        </g>
+
+        <!-- Stage chain -->
+        <g font-family="Fraunces" font-size="13" font-weight="600" fill="#0F1B2D">
+          <g>
+            <rect x="180" y="60" width="130" height="60" rx="3" fill="#F4EDE0" stroke="#8E6A3B"/>
+            <text x="245" y="85" text-anchor="middle">Inward Dock</text>
+            <text x="245" y="103" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#8E6A3B">GRN · PHOTO</text>
+          </g>
+          <g>
+            <rect x="180" y="240" width="130" height="60" rx="3" fill="#F4EDE0" stroke="#8E6A3B"/>
+            <text x="245" y="265" text-anchor="middle">Quality Check</text>
+            <text x="245" y="283" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#8E6A3B">3-PT INSPECT</text>
+          </g>
+          <g>
+            <rect x="360" y="150" width="130" height="60" rx="3" fill="#C9A36B"/>
+            <text x="425" y="175" text-anchor="middle" fill="#0F1B2D">Bin Storage</text>
+            <text x="425" y="193" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#0F1B2D">WMS MAPPED</text>
+          </g>
+          <g>
+            <rect x="540" y="60" width="130" height="60" rx="3" fill="#F4EDE0" stroke="#8E6A3B"/>
+            <text x="605" y="85" text-anchor="middle">Order Sync</text>
+            <text x="605" y="103" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#8E6A3B">CHANNEL API</text>
+          </g>
+          <g>
+            <rect x="540" y="240" width="130" height="60" rx="3" fill="#F4EDE0" stroke="#8E6A3B"/>
+            <text x="605" y="265" text-anchor="middle">Pick · Wave</text>
+            <text x="605" y="283" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#8E6A3B">SCAN · VERIFY</text>
+          </g>
+          <g>
+            <rect x="720" y="150" width="130" height="60" rx="3" fill="#C9A36B"/>
+            <text x="785" y="175" text-anchor="middle" fill="#0F1B2D">Pack Station</text>
+            <text x="785" y="193" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#0F1B2D">BRAND PACK</text>
+          </g>
+          <g>
+            <rect x="900" y="60" width="130" height="60" rx="3" fill="#F4EDE0" stroke="#8E6A3B"/>
+            <text x="965" y="85" text-anchor="middle">Label · AWB</text>
+            <text x="965" y="103" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#8E6A3B">COMPLIANT</text>
+          </g>
+          <g>
+            <rect x="900" y="240" width="130" height="60" rx="3" fill="#F4EDE0" stroke="#8E6A3B"/>
+            <text x="965" y="265" text-anchor="middle">Manifest</text>
+            <text x="965" y="283" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#8E6A3B">COURIER POD</text>
+          </g>
+          <g>
+            <rect x="1080" y="150" width="160" height="60" rx="3" fill="#0F1B2D"/>
+            <text x="1160" y="175" text-anchor="middle" fill="#E9C893">DISPATCH</text>
+            <text x="1160" y="193" text-anchor="middle" font-family="Space Mono" font-size="9" fill="#C9A36B">TO CUSTOMER</text>
+          </g>
+        </g>
+
+        <!-- Flow lines -->
+        <g fill="none" stroke="#8E6A3B" stroke-width="1.5" marker-end="url(#arrow)">
+          <path d="M140,170 L180,90"/>
+          <path d="M140,190 L180,270"/>
+          <path d="M310,90 Q330,90 340,150 L360,165"/>
+          <path d="M310,270 Q330,270 340,200 L360,195"/>
+          <path d="M490,180 L540,90"/>
+          <path d="M490,180 L540,270"/>
+          <path d="M670,90 Q690,90 700,150 L720,165"/>
+          <path d="M670,270 Q690,270 700,200 L720,195"/>
+          <path d="M850,180 L900,90"/>
+          <path d="M850,180 L900,270"/>
+          <path d="M1030,90 Q1050,90 1060,150 L1080,165"/>
+          <path d="M1030,270 Q1050,270 1060,200 L1080,195"/>
+        </g>
+
+        <!-- Title -->
+        <text x="20" y="30" font-family="Fraunces" font-size="18" font-weight="600" fill="#0F1B2D">Operations Blueprint — 7-Stage Fulfilment Loop</text>
+        <text x="20" y="48" font-family="Space Mono" font-size="9" fill="#8E6A3B" letter-spacing="1">BOX THE BOX · OPERATIONS · OPS-001 · REV.04</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== STATS ====================== -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat reveal">
+        <div class="num" data-edit="stat1">40K<em> sq.ft</em></div>
+        <div class="lbl" data-edit="stat1-lbl">Floor space</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-edit="stat2">5,000<em>+</em></div>
+        <div class="lbl" data-edit="stat2-lbl">Orders we can ship per day</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-edit="stat3">99.7<em>%</em></div>
+        <div class="lbl" data-edit="stat3-lbl">Pick accuracy, last 90 days</div>
+      </div>
+      <div class="stat reveal">
+        <div class="num" data-edit="stat4">&lt; 24<em> hrs</em></div>
+        <div class="lbl" data-edit="stat4-lbl">From your truck to the shelf</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== WAREHOUSE ====================== -->
+<section id="warehouse">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Inside the warehouse</div>
+        <h2>40,000 square feet. One way of doing things.</h2>
+      </div>
+      <p>
+        Sectorised, scannable, and well lit (because the floor staff have to actually find your stock). Direct ramp access for trucks, every major courier picks up from us daily, and we're close enough to JNPT and the Mumbai-Nashik highway that nothing gets stuck in a traffic story.
+      </p>
+    </div>
+
+    <div class="warehouse-grid reveal">
+      <div class="warehouse-main">
+        <img src="images/warehouse-main.jpg" alt="Sector A — multi-tier industrial racking inside our fulfilment centre" loading="lazy">
+        <div class="caption">
+          <div class="eyebrow">Sector A · Storage</div>
+          <h3>Every SKU has an address.</h3>
+          <p>Multi-tier racking, scanned bins, painted aisles. The kind of warehouse where you can find a single tube of lipstick in under 90 seconds.</p>
+        </div>
+      </div>
+      <div class="warehouse-side">
+        <div>
+          <img src="images/warehouse-side-1.jpg" alt="Pack Lines Sector B with Box The Box workers and branded stations" loading="lazy">
+          <div class="lbl"><b>Pack Lines</b>SECTOR B</div>
+        </div>
+        <div>
+          <img src="images/warehouse-side-2.jpg" alt="Dispatch Bay Sector C with courier-segregated cages — Delhivery, Blue Dart, Xpressbees, Ecom Express, Shadowfax" loading="lazy">
+          <div class="lbl"><b>Dispatch Bay</b>SECTOR C</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CHANNELS ====================== -->
+<section class="channels">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <div class="eyebrow">Plug & ship</div>
+        <h2>Pre-integrated with every channel that matters.</h2>
+      </div>
+      <p>
+        We connect natively to major Indian and global ecommerce platforms.
+        Bring us your seller account credentials and your stock — we'll do the rest.
+      </p>
+    </div>
+    <div class="channel-strip">
+      <div class="channel">Amazon<small>Easy Ship · FBA</small></div>
+      <div class="channel">Flipkart<small>Smart · F-Assured</small></div>
+      <div class="channel">Myntra<small>PPMP · MFAS</small></div>
+      <div class="channel">Shopify<small>Direct API</small></div>
+      <div class="channel">Meesho<small>Supplier Hub</small></div>
+      <div class="channel">+10 more<small>WooCommerce, Nykaa, Ajio…</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== TESTIMONIAL ====================== -->
+<section class="quote-section">
+  <div class="wrap">
+    <div class="quote-block reveal">
+      <blockquote>
+        Our breakages dropped to near-zero in the first month. The team treats every
+        parcel like it has their own name on it — and our customers can feel it.
+      </blockquote>
+      <cite>
+        <b>A founder we work with</b>
+        D2C Home & Decor Brand · Mumbai
+      </cite>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== CONTACT ====================== -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Tell us what you're shipping.</h2>
+        <p>
+          Drop us a line — what you sell, roughly how many orders a month, and any specific headaches you're trying to solve. We usually get back the same day, the next at most.
+        </p>
+        <div class="contact-block">
+          <div class="label">Address</div>
+          <div class="val" data-edit="address">Box The Box Fulfilment Centre,<br>Bhiwandi, Thane — 421302,<br>Maharashtra, India</div>
+        </div>
+        <div class="contact-block">
+          <div class="label">Email</div>
+          <div class="val"><a href="mailto:hello@boxthebox.in" data-edit="email-link">hello@boxthebox.in</a></div>
+        </div>
+        <div class="contact-block">
+          <div class="label">Phone / WhatsApp</div>
+          <div class="val"><a href="tel:+919817279519" data-edit="phone-link">+91 98172 79519</a></div>
+        </div>
+        <div class="contact-block">
+          <div class="label">Hours</div>
+          <div class="val" data-edit="hours">Mon — Sat · 9:30 AM to 7:30 PM IST</div>
+        </div>
+      </div>
+
+      <form class="form reveal" id="contact-form" onsubmit="handleSubmit(event)">
+        <div class="row">
+          <input type="text" name="name" placeholder="Your name" required>
+          <input type="text" name="brand" placeholder="Brand / company">
+        </div>
+        <div class="row">
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="phone" placeholder="Phone">
+        </div>
+        <select name="volume" required>
+          <option value="" disabled selected>Monthly order volume —</option>
+          <option>0 – 500 orders</option>
+          <option>500 – 2,000 orders</option>
+          <option>2,000 – 10,000 orders</option>
+          <option>10,000+ orders</option>
+        </select>
+        <select name="categories" required>
+          <option value="" disabled selected>Primary category —</option>
+          <option>Apparel & Fashion</option>
+          <option>Beauty & Personal Care</option>
+          <option>Electronics & Accessories</option>
+          <option>Home & Decor</option>
+          <option>Food & FMCG</option>
+          <option>Other</option>
+        </select>
+        <textarea name="message" placeholder="What you sell, roughly how many orders a month, anything specific you want sorted…"></textarea>
+        <button type="submit" class="btn">Send <span class="arrow">→</span></button>
+        <div class="form-note">Usually we reply same day. Your details stay with us.</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== FOOTER ====================== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <a href="#top" class="brand">
+          <svg class="logo-mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="Box The Box logo" style="color: var(--brass)">
+            <rect x="6" y="14" width="28" height="28" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.5"/>
+            <path d="M6 14 L20 6 L34 14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <path d="M34 14 L42 18 L42 38 L34 42" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+            <line x1="6" y1="28" x2="34" y2="28" stroke="currentColor" stroke-width="2.5"/>
+            <circle cx="38" cy="28" r="2" fill="currentColor"/>
+          </svg>
+          <div class="brand-name" style="color: var(--paper)">Box The Box</div>
+        </a>
+        <p>A fulfilment partner for D2C and marketplace brands in India. We handle the boxes so you can handle the rest.</p>
+      </div>
+      <div>
+        <h5>Services</h5>
+        <ul>
+          <li><a href="#services">Inward & Storage</a></li>
+          <li><a href="#services">Pick & Pack</a></li>
+          <li><a href="#services">Channel Dispatch</a></li>
+          <li><a href="#services">Returns & RTO</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#warehouse">Warehouse</a></li>
+          <li><a href="#lifecycle">Process</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Book a Visit</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Find us</h5>
+        <ul>
+          <li data-edit="footer-loc1">Bhiwandi, Thane</li>
+          <li data-edit="footer-loc2">Maharashtra 421302</li>
+          <li data-edit="footer-email">hello@boxthebox.in</li>
+          <li data-edit="footer-phone">+91 98172 79519</li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© <span id="yr"></span> Box The Box · All rights reserved</div>
+      <div>Packed With Care · Shipped Everywhere</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Year
+  document.getElementById('yr').textContent = new Date().getFullYear();
+
+  // Mobile hamburger menu
+  const navToggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  if (navToggle && navLinks){
+    navToggle.addEventListener('click', () => {
+      navToggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    // Close menu when a nav link is tapped
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navToggle.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+
+  // Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+
+  // ============================================================
+  // POPULATE EDITABLE FIELDS FROM THE SITE CONFIG AT THE TOP
+  // ============================================================
+  (function applyConfig() {
+    if (typeof SITE === 'undefined') return;
+    const set = (selector, value) => {
+      document.querySelectorAll(`[data-edit="${selector}"]`).forEach(el => {
+        if (el.tagName === 'A' && selector.endsWith('-link')) {
+          // For links we update both href and text
+          if (selector === 'phone-link') {
+            el.href = 'tel:' + SITE.phoneLink;
+            el.textContent = SITE.phone;
+          } else if (selector === 'email-link') {
+            el.href = 'mailto:' + SITE.email;
+            el.textContent = SITE.email;
+          }
+        } else {
+          el.innerHTML = value;
+        }
+      });
+    };
+    set('phone-link');
+    set('email-link');
+    set('address',  `${SITE.addressLine1},<br>${SITE.addressLine2},<br>${SITE.addressLine3}`);
+    set('hours',    SITE.hours);
+    set('footer-loc1',  SITE.addressLine2.split('—')[0].trim().replace(/,$/, ''));
+    set('footer-loc2',  'Maharashtra ' + (SITE.addressLine2.match(/\d{6}/) || [''])[0]);
+    set('footer-email', SITE.email);
+    set('footer-phone', SITE.phone);
+    
+    // Hero compact stats
+    set('hero-stat1', `${SITE.stat1}<em>${SITE.stat1Unit}.</em>`);
+    set('hero-stat3', `${SITE.stat3}${SITE.stat3Unit}`);
+    
+    // Big stats strip — for stat1 we shrink "40,000" to "40K" for readability
+    const compactify = (n) => {
+      const v = String(n).replace(/,/g,'');
+      const num = parseFloat(v);
+      if (!isFinite(num)) return n;
+      if (num >= 1000) return Math.round(num/1000) + 'K';
+      return n;
+    };
+    set('stat1', `${compactify(SITE.stat1)}<em>${SITE.stat1Unit}</em>`);
+    set('stat1-lbl', SITE.stat1Label);
+    set('stat2', `${SITE.stat2}<em>${SITE.stat2Unit}</em>`);
+    set('stat2-lbl', SITE.stat2Label);
+    set('stat3', `${SITE.stat3}<em>${SITE.stat3Unit}</em>`);
+    set('stat3-lbl', SITE.stat3Label);
+    set('stat4', `${SITE.stat4.replace('<','&lt;')}<em>${SITE.stat4Unit}</em>`);
+    set('stat4-lbl', SITE.stat4Label);
+    
+    // Testimonial
+    set('quote-text', SITE.quoteText);
+    set('quote-author', SITE.quoteAuthor);
+    set('quote-meta', SITE.quoteMeta);
+  })();
+
+  // Form handler — for now: opens mail client. Replace with Formspree / API on launch.
+  function handleSubmit(e){
+    e.preventDefault();
+    const f = e.target;
+    const data = Object.fromEntries(new FormData(f).entries());
+    const body = `Name: ${data.name}%0D%0ABrand: ${data.brand||'-'}%0D%0AEmail: ${data.email}%0D%0APhone: ${data.phone||'-'}%0D%0AVolume: ${data.volume}%0D%0ACategory: ${data.categories}%0D%0A%0D%0AMessage:%0D%0A${data.message||'-'}`;
+    window.location.href = `mailto:${typeof SITE !== "undefined" ? SITE.email : "hello@boxthebox.in"}?subject=Fulfilment Enquiry — ${data.brand||data.name}&body=${body}`;
+  }
+</script>
+
+</body>
+</html>
